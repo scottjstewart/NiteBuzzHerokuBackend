@@ -1,0 +1,49 @@
+<ul>
+  <li>
+    <a routerLink="" [class.activated]="currentUrl == '/'">
+      Home
+    </a>
+  </li>
+  <li>
+    <a *ngIf="logStat===false" routerLink="/login" [class.activated]="currentUrl == '/login'">
+      Login
+    </a>
+    <a *ngIf="logStat===true" (click)="logout()">Logout</a>
+  </li>
+  <li *ngIf="logStat===false">
+    <a routerLink="/signup" [class.activated]="currentUrl == '/signup'">
+      Signup
+    </a>
+  </li>
+  <li> <a routerLink="/about" [class.activated]="currentUrl == '/about'">
+      Buzzes!
+    </a>
+  </li>
+  <li *ngIf="logStat===true" (click)="openDialog()">
+    <a>Start a Buzz</a>
+  </li>
+  <li>
+    <a routerLink="/contact" [class.activated]="currentUrl == '/contact'">
+      Contact
+    </a>
+  </li>
+  <li *ngIf="logStat===true && isAdmin === false">
+    <a [matMenuTriggerFor]="menu">
+      <span>
+        <sub>
+          <mat-icon>person</mat-icon>
+        </sub>
+      </span>
+      Account
+    </a>
+    <mat-menu #menu="matMenu">
+      <a mat-menu-item routerLink="/user/account">My Account</a>
+    </mat-menu>
+  </li>
+  <div class="logo">
+    <img src="">
+  </div>
+  <li *ngIf="isAdmin === true">
+    <a routerLink="/admin">Admin</a>
+  </li>
+</ul>

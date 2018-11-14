@@ -1,0 +1,14 @@
+div{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+}
+
+button{
+    margin-right: 5px;
+}
+
+mat-form-field{
+    width: 100%;
+    color: white
+}

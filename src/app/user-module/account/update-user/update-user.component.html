@@ -1,0 +1,33 @@
+<!-- <div color="primary"> -->
+<h2 mat-dialog-title>Update User</h2>
+<mat-dialog-content [formGroup]="form">
+  <p>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>User Name</mat-label>
+      <input matInput placeholder="User Name" formControlName="userName">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>First userName</mat-label>
+      <input matInput placeholder="First Name" formControlName="firstName">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Last Name" formControlName="lastName">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" type="email" formControlName="email">
+    </mat-form-field>
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="accent" (click)="close()">Cancel</button>
+  <button mat-raised-button color="accent" (click)="submit()">Submit</button>
+</mat-dialog-actions>
+<!-- </div> -->

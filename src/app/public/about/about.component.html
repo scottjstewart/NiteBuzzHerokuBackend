@@ -1,0 +1,80 @@
+<mat-card id="wrapper">
+  <h1 class="yellow">Checkout These Buzzes Near You!</h1>
+  <h3 class="white">Upvote The Ones You Agree With or Post Your Own!</h3>
+  <h4 class="yellow">Featured Buzzes</h4>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>NEW BUZZ!</mat-card-title>
+      <mat-card-subtitle>Buzz Details</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ul>
+        <li>
+          Location:
+        </li>
+        <li>
+          Price:
+        </li>
+        <li>
+          Fun Factor:
+        </li>
+        <li>
+          Details:
+        </li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="asset">Comment on this Buzz!</button>
+      <button mat-button color="asset">Upvote this Buzz!</button>
+    </mat-card-actions>
+  </mat-card>
+  <h2 class="yellow">All Buzzes Near You!</h2>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Title</mat-panel-title>
+        <mat-panel-title>Price</mat-panel-title>
+        <mat-panel-title>Rating</mat-panel-title>
+        <mat-panel-title>Category</mat-panel-title>
+        <mat-panel-title>Location</mat-panel-title>
+        <mat-panel-title>Upvotes</mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngFor="let buzz of buzzes$, let i = index" [id]="buzz.id" class="buzz">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{buzz.title}}</mat-panel-title>
+        <mat-panel-description>{{buzz.price}}</mat-panel-description>
+        <mat-panel-description>{{buzz.funFactor}}/5</mat-panel-description>
+        <mat-panel-description>{{buzz.category}}</mat-panel-description>
+        <mat-panel-description>{{buzz.location}}</mat-panel-description>
+        <mat-panel-description>{{buzz.upVote}}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>{{buzz.details}}</p>
+      <mat-list>
+        <mat-list-item *ngFor="let comment of buzz.Comments, let x = index">
+          <h5 matLine>{{comment.Commenter.userName}} said:</h5><br>
+          <p matLine>{{comment.text}}</p><br>
+          <p matLine *ngIf="comment.edited===true"><small>Edited</small></p>
+          <p matLine><small>{{comment.updatedAt | date:'short'}}</small></p>
+          <mat-action-row>
+            <button mat-raised-button *ngIf="userId === comment.CommenterId" color="accent" (click)="updateComment(comment.id, buzz.details, comment.text, buzz.title, i, x)">Edit
+              Comment</button>
+            <button mat-raised-button *ngIf="userId === comment.CommenterId" color="warn" (click)="deleteComment(comment.id, i, x)">Delete
+              Comment</button>
+          </mat-action-row>
+        </mat-list-item>
+      </mat-list>
+      <mat-action-row>
+        <button mat-raised-button [disabled]="!loggedIn" (click)="plusOne(buzz.id,i)" color="accent">+1</button>
+        <button mat-raised-button [disabled]="!loggedIn" (click)="openDialog(buzz.title, buzz.details, buzz.id, i)"
+          color="accent">Comment</button>
+        <button mat-raised-button color="accent" routerLink="/buzz/detail/{{buzz.id}}">Go to Buzz Detail</button>
+        <button mat-raised-button *ngIf="userId === buzz.BuzzerId" color="accent" (click)="updateBuzz(buzz, i)">Update
+          Buzz</button>
+        <button mat-raised-button *ngIf="userId === buzz.BuzzerId" color="warn" (click)="deleteBuzz(buzz.id, buzz.title, i)">Delete
+          Buzz</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>

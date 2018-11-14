@@ -1,0 +1,42 @@
+.example-card {
+  max-width: 25vw;
+  margin: 24px;
+}
+
+.example-header-image {
+  background-image: url("https://pbs.twimg.com/profile_images/696916164115611648/eckHGwSL_400x400.jpg");
+  background-size: cover;
+}
+
+.white {
+  color: antiquewhite;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+#wrapper {
+  background-image: url("../../../assetsmain/nick-fewings-568466-unsplash.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0 0 0 0;
+  min-height: 100vh
+}
+#wrapper2{
+  background-color: #3700b3;
+  border-radius: 0 0 0 0
+}
+.buzz{
+  background-color: goldenrod;
+  color: white
+}
+button{
+  margin-left: 10px
+}

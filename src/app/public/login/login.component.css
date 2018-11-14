@@ -1,0 +1,87 @@
+/* Bordered form */
+form {
+  width: 98%;
+  padding: 10px 10px 10px 10px;
+}
+
+.wrapper {
+  background-image: url("../../../assetsmain/matt-nelson-168468-unsplash.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Full-width inputs */
+mat-form-field {
+  width: 100%;
+  background-color: white;
+  border-radius: 5px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  box-sizing: border-box;
+}
+
+input {
+  color: white;
+}
+
+mat-checkbox {
+  color: white;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4caf50;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
+
+.footer {
+  width: 100vw;
+}
+
+.container {
+  color: yellow;
+  text-align: center;
+}

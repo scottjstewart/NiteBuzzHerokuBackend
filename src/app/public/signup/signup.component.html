@@ -1,0 +1,30 @@
+<mat-card class="wrapper">
+  <h1>Sign Up</h1>
+  <hr>
+  <p>Please complete this form to create an account.</p>
+  <div class="container">
+    <form class="example-form" style="border:1px solid #ccc" [formGroup]="buildUser" (ngSubmit)="makeUser()">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input type="email" matInput placeholder="Email" formControlName="email" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input matInput placeholder="First Name" formControlName="firstName" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input matInput placeholder="Last Name" formControlName="lastName" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input matInput placeholder="Username" formControlName="userName" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input matInput type="password" placeholder="Password" formControlName="password" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input matInput type="password" placeholder="Confirm Password">
+      </mat-form-field>
+      <mat-checkbox>Remember Me</mat-checkbox>
+      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy Policy</a>.</p>
+      <button mat-raised-button color="accent" type="submit" [disabled]="!buildUser.valid">Sign Up</button>
+    </form>
+  </div>
+</mat-card>

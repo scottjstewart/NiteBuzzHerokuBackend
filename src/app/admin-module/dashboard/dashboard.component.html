@@ -1,0 +1,94 @@
+<mat-card>
+  <mat-card>
+
+    <h1>Users</h1>
+    <mat-paginator #userPaginator [length]="count" [pageSizeOptions]="[5,10,20,50,100]"></mat-paginator>
+    <div spinner-container *ngIf="dataSource.loading$ | async">
+      <mat-spinner></mat-spinner>
+    </div>
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="Username">
+        <mat-header-cell *matHeaderCellDef>Username</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{user.userName}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="FirstName">
+        <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{user.firstName}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Email">
+        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{user.email}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Role">
+        <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{user.role}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef="let user">Edit</mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <button mat-button (click)="editUser()">Edit</button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Delete">
+        <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <button mat-button (click)="deleteUser(user.id)">Delete</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </mat-card>
+  <mat-card>
+    <h1>Buzzes</h1>
+    <mat-paginator #buzzPaginator [length]="bCount" [pageSizeOptions]="[5,10,20,50,100]"></mat-paginator>
+    <div spinner-container *ngIf="buzzSource.loading$ | async">
+      <mat-spinner></mat-spinner>
+    </div>
+    <mat-table [dataSource]="buzzSource">
+      <ng-container matColumnDef="Title">
+        <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+        <mat-cell *matCellDef="let buzz">{{buzz.title}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef>Username</mat-header-cell>
+        <mat-cell *matCellDef="let buzz">{{buzz.Buzzer.userName}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Location">
+        <mat-header-cell *matHeaderCellDef>Location</mat-header-cell>
+        <mat-cell *matCellDef="let buzz">{{buzz.location}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Category">
+        <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+        <mat-cell *matCellDef="let buzz">{{buzz.category}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Price">
+        <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+        <mat-cell *matCellDef="let buzz">{{buzz.price}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="funFactor">
+        <mat-header-cell *matHeaderCellDef>Fun Factor</mat-header-cell>
+        <mat-cell *matCellDef="let buzz">{{buzz.funFactor}}/5</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="UpVote">
+        <mat-header-cell *matHeaderCellDef>Up Votes</mat-header-cell>
+        <mat-cell *matCellDef="let buzz">{{buzz.upVote}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef="let user">Edit</mat-header-cell>
+        <mat-cell *matCellDef="let buzz">
+          <button mat-button>Edit</button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Delete">
+        <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+        <mat-cell *matCellDef="let buzz">
+          <button mat-button (click)="deleteBuzz(buzz.id)">Delete</button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="buzzColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: buzzColumns"></mat-row>
+    </mat-table>
+  </mat-card>
+</mat-card>

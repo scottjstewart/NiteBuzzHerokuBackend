@@ -1,0 +1,61 @@
+<div color="primary">
+  <h2 mat-dialog-title>Start a New Buzz</h2>
+  <mat-dialog-content [formGroup]="form">
+    <p>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Title</mat-label>
+        <input *ngIf="!update" matInput placeholder="Title" formControlName="title">
+        <p *ngIf="update">{{title}}</p>
+        <input *ngIf="update" matInput formControlName="title">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Location</mat-label>
+        <input *ngIf="!update" matInput placeholder="Location Name" formControlName="location">
+        <p *ngIf="update">{{location}}</p>
+        <input *ngIf="update" matInput [placeholder]="location" formControlName="location">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Category</mat-label>
+        <input *ngIf="!update" matInput placeholder="Category" formControlName="category">
+        <p *ngIf="update">{{category}}</p>
+        <input *ngIf="update" matInput [placeholder]="category" formControlName="category">
+        <mat-hint>e.g. bar, concert, etc.</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Price</mat-label>
+        <input *ngIf="!update" matInput placeholder="Price" formControlName="price">
+        <p *ngIf="update">{{price}}</p>
+        <input *ngIf="update" matInput [placeholder]="price" formControlName="price">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Fun Factor</mat-label>
+        <input matInput *ngIf="!update" type="number" min="0" max="5" placeholder="Fun Factor (1-5)" formControlName="funFactor">
+        <p *ngIf="update">{{funFactor}}</p>
+        <input matInput *ngIf="update" type="number" min="0" max="5" [placeholder]="funFactor" formControlName="funFactor">
+        <mat-hint>Rate from 1-5</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Details</mat-label>
+        <textarea *ngIf="!update" matInput placeholder="Details" formControlName="details"></textarea>
+        <p *ngIf="update">{{details}}</p>
+        <textarea *ngIf="update" matInput [placeholder]="details" formControlName="details"></textarea>
+        <mat-hint>What's going on?</mat-hint>
+      </mat-form-field>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button color="accent" (click)="close()">Cancel</button>
+    <button *ngIf="!update" mat-raised-button color="accent" (click)="submit()">Submit</button>
+    <button *ngIf="update" mat-raised-button color="accent" (click)="updateBuzz()">Update</button>
+  </mat-dialog-actions>
+</div>

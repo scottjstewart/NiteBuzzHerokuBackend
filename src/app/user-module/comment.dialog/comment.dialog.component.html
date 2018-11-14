@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Comment for {{title}}:</h2>
+<mat-dialog-content [formGroup]="form">
+  <h4>Original Buzz Text</h4>
+  <p>{{original}}</p>
+  <mat-form-field *ngIf="update===false" color="accent">
+    <textarea matInput placeholder="Leave a comment" formControlName="comment"></textarea>
+  </mat-form-field>
+  <h5 matLine *ngIf="update===true">Original Comment Text</h5>
+  <p matLine *ngIf="update===true">
+    {{old}}
+  </p>
+  <mat-form-field *ngIf="update===true" color="accent">
+    <mat-label>Edit your comment:</mat-label>
+    <textarea matInput placeholder="{{old}}" formControlName="comment"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button *ngIf="update === true" (click)="updateComment()" color="accent">Update</button>
+  <button mat-raised-button *ngIf="update === false" (click)="submit()" color="accent">Submit</button>
+  <button mat-raised-button (click)="close()" color="accent">Cancel</button>
+</mat-dialog-actions>

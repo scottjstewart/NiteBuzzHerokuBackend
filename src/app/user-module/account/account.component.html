@@ -1,0 +1,76 @@
+<mat-card class="wrapper">
+  <table class="tble">
+    <tr>
+      <th>User Name</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+    </tr>
+    <tr>
+      <td>{{ users$.userName }}</td>
+      <td>{{ users$.firstName }}</td>
+      <td>{{ users$.lastName }}</td>
+      <td>{{ users$.email }}</td>
+    </tr>
+  </table>
+
+  <mat-action-list>
+    <button mat-raised-button class="button" (click)="updateUser()" color="accent">Update your account</button>
+    <button mat-raised-button class="button" (click)="delete()" color="accent">Delete your account</button>
+  </mat-action-list>
+
+  <h1>Your Activity!</h1>
+  <mat-card>
+    <mat-accordion *ngIf="users$ ">
+      <h3>Buzzes</h3>
+      <mat-expansion-panel *ngFor="let buzz of users$.Buzzes" [id]="buzz.id">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ buzz.title }}</mat-panel-title>
+          <mat-panel-description>Price: {{ buzz.price }}</mat-panel-description>
+          <mat-panel-description>Rating: {{ buzz.funFactor }}/5</mat-panel-description>
+          <mat-panel-description>category: {{ buzz.category }}</mat-panel-description>
+          <mat-panel-description>Location: {{ buzz.location }}</mat-panel-description>
+          <mat-panel-description>Votes: {{ buzz.upVote }}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <h4>Details:</h4>
+        <p>{{ buzz.details }}</p>
+        <h4>Comments</h4>
+        <mat-list>
+          <mat-list-item *ngFor="let comment of buzz.Comments">
+            <h5 matLine>
+              <b>{{ comment.Commenter.userName }}</b>
+            </h5>
+            <p matLine>{{ comment.text }}</p>
+            <p matLine>
+              <small><b>{{ comment.createdAt | date: "short" }}</b></small>
+            </p>
+          </mat-list-item>
+        </mat-list>
+        <button mat-raised-button [disabled]="!loggedIn" (click)="openDialog(buzz.id)">
+          Comment
+        </button>
+        <button class="button" (click)="deleteBuzz(buzz.id)">
+          Delete this Buzz
+        </button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card>
+  <mat-card>
+    <h3>Your Comments</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let comment of users$.Comment">
+        <h4 matLine>
+          <b>{{ users$.userName }}</b>
+        </h4>
+        <p matLine>{{ comment.text }}</p>
+        <p matLine>
+          <small><b>{{ comment.createdAt | date: "short" }}</b></small>
+        </p>
+        <button class="button" (click)="deleteComment(comment.id)">
+          Delete this Comment
+        </button>
+        <a mat-button routerLink="/buzz/detail/{{comment.BuzzId}}">Go To Buzz</a>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</mat-card>

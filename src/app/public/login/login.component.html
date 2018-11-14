@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <form action="action_page.php">
+    <div class="imgcontainer">
+      <img src="./logo.png" alt="Avatar" class="avatar">
+    </div>
+
+
+
+    <form action="action_page.php" [formGroup]="credentials" (ngSubmit)="login()">
+
+      <mat-form-field>
+        <input type="text" matInput placeholder="Enter Username" formControlName="userName" appearance="outline"
+          required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="password" matInput placeholder="Enter Password" formControlName="password" appearance="outline"
+          required>
+      </mat-form-field>
+
+      <button mat-raised-button type="submit" color="accent" [disabled]="!credentials.valid">Sign
+        In</button>
+
+      <mat-checkbox checked="checked" name="remember">Remember Me</mat-checkbox>
+    </form>
+    <div class="container" style="background-color:#f1f1f1">
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>

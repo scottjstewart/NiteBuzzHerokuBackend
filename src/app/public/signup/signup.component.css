@@ -1,0 +1,60 @@
+h1 {
+  color: yellow;
+}
+p {
+  color: yellow;
+}
+form {
+  width: 98%;
+  padding: 10px 10px 10px 10px;
+}
+/* Full-width inputs */
+mat-form-field {
+  width: 100%;
+  background-color: white;
+  border-radius: 5px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  box-sizing: border-box;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin: 48px;
+  opacity: 0.9;
+}
+
+.wrapper {
+  background-image: url("../../../assetsmain/matt-nelson-168468-unsplash.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 0 0 0 0
+}
+
+.example-form {
+  text-align: center;
+  color: #3700b3;
+  min-width: 90vw;
+  max-width: 100vw;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+  color: #ddd;
+}
+
+.yellow {
+  color: #3700b3 !important;
+}
+
+.footer {
+  width: 100vw;
+}

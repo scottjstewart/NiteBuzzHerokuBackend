@@ -1,0 +1,25 @@
+.wrapper {
+  background-image: url("https://images.pexels.com/photos/594233/pexels-photo-594233.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  min-height: 100vh;
+  border-radius: 0;
+}
+
+.tble {
+  background-image: linear-gradient(blue, purple);
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+.button {
+  height: 32px;
+  background-image: linear-gradient(purple, blue);
+  color: white;
+  margin: 32px;
+  border-radius: 5px;
+}
+
