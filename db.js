@@ -6,7 +6,7 @@ const sequelize = new Sequelize(
   process.env.DATABASE_URL ||
     `postgresql://postgres:${encodeURIComponent(
       process.env.PASS
-    )}@localhost/pies`,
+    )}@localhost/redbadge`,
   {
     dialect: "postgres"
   }

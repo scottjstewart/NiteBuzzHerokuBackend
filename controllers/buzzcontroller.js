@@ -128,6 +128,8 @@ module.exports = (app, db) => {
       .create({
         userId: req.user.id,
         location: req.body.location,
+        title: req.body.title,
+        category: req.body.category,
         price: req.body.price,
         funFactor: req.body.funFactor,
         details: req.body.details,
@@ -146,12 +148,41 @@ module.exports = (app, db) => {
   });
 
   app.put("/buzz/update/:id", validateSession, (req, res) => {
-    buzz.findOne({ where: { id: req.params.id } }).then(buzz => {
-      if (buzz.userId === req.user.id) {
-        buzz
-          .update(req.body, { where: { id: req.params.id } })
-          .then(buzz => res.status(200).json(buzz))
-          .catch(err => res.json(req.error));
+    buzz.findOne({ where: { id: req.params.id } }).then(buzr => {
+      if (buzr.userId === req.user.id) {
+        buzr
+          .update({
+            location: req.body.location && req.body.location !== '' || null || undefined ? req.body.location : buzr.location,
+            title: req.body.title && req.body.title !== '' || null || undefined ? req.body.title : buzr.title,
+            category: req.body.category && req.body.category !== '' || null || undefined ? req.body.category : buzr.category,
+            price: req.body.price && req.body.price !== '' || null || undefined ? req.body.price : buzr.price,
+            funFactor: req.body.funFactor && req.body.funFactor !== '' || null || undefined ? req.body.funFactor : buzr.funFactor,
+            details: req.body.details && req.body.details !== '' || null || undefined ? req.body.details : buzr.details,
+            upVote: buzr.upVote,
+            longitude: buzr.longitude,
+            latitude: buzr.latitude
+          })
+          .then(buz => {
+            buzz.findOne({
+              where: { id: req.params.id },
+              include: [
+                {
+                  model: comment,
+                  as: 'Comments',
+                  include: [
+                    {
+                      model: user,
+                      as: 'Commenter',
+                      attributes: ['userName']
+                    }
+                  ]
+                }
+              ]
+            }).then(buzs => {
+              res.status(200).send(buzs)
+            })
+          })
+          .catch(err => res.json({ error: err }));
       } else {
         res.status(500).json({
           message: `User does not own ${req.params.id}`
@@ -159,13 +190,14 @@ module.exports = (app, db) => {
       }
     });
   });
+
   app.delete("/buzz/delete/:id", validateSession, (req, res) => {
     buzz.findOne({ where: { id: req.params.id } }).then(buzz => {
       if (buzz.userId === req.user.id) {
         buzz
           .destroy({ where: { id: req.params.id } })
-          .then(buzz => res.status(200).json(buzz))
-          .catch(err => res.json(req.error));
+          .then(buzz => res.status(200).json({ message: `Item ${req.params.id} deleted.` }))
+          .catch(err => res.json({ error: err }));
       } else {
         res.status(500).json({
           message: `C'mon man! don't delete other peoples stuff!`
